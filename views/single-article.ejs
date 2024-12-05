@@ -1,0 +1,41 @@
+<%- include("partials/header.ejs") %>
+<body>
+  <main>
+    <h1>SingleArticle</h1>
+    <% if(articleToEdit){ %>
+    <form
+      class="new-form-container"
+      action="/articles/edit/<%= articleToEdit.uniqueId %>"
+      method="POST"
+    >
+      <div class="form-group">
+        <div class="title-div">
+          <label for="title">Title:</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            value="<%= articleToEdit.title %>"
+            required
+          />
+        </div>
+        <div class="text-div">
+          <label for="text">Text:</label>
+          <textarea name="text" id="text" required>
+<%=articleToEdit.text %></textarea
+          >
+        </div>
+      </div>
+      <div class="buttons-div">
+        <div>
+      <button class="save-button">Save</button>
+    </div>
+    </form>
+    <form action="/articles/delete/<%= articleToEdit.uniqueId %>" method="post">
+      <button class="del-button">Delete</button>
+    </form>
+  </div>
+    <% } %>
+  </main>
+</body>
+<%- include("partials/footer.ejs") %>

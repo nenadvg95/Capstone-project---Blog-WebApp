@@ -1,0 +1,69 @@
+<%- include("partials/header.ejs") %>
+<main>
+  <div class=" bigBackground">
+
+  </div>
+  <div class="grid-container">
+    <div class="info-div">
+      <h2>Why would you even want to have a blog?</h2>
+      <p>
+        It’s like a resume, only better. I know of a few people who have had
+        blog posts lead to job offers!Helps you learn. Organizing knowledge
+        always helps me synthesize my own ideas. One of the tests of whether you
+        understand something is whether you can explain it to someone else. A
+        blog post is a great way to do that.Saves time. Any time you answer a
+        question multiple times through email, you should turn it into a blog
+        post, which makes it easier for you to share the next time someone asks.
+      </p>
+    </div>
+    <div class="card">
+      <p>Create an article for no appearent reason</p>
+      <a href="/new"><button>New Article</button></a>
+    </div>
+  </div>
+  <div class="latest-article-div">
+    <!--Display Latest created article-->
+    <% if(locals.article){ %>
+      <div class="latest-article-bg">
+        <a href="/articles/<%= article.uniqueId %>"></a>
+      </div>
+    <div class="latest-article-content">
+        <a href="/articles/<%= article.uniqueId %>"><h2 class="latest-title"><%=article.title.slice(0,30) %></h2></a>
+      <p><%= article.text.slice(0,30)+"..." %></p>
+      <p class="date"><%= article.date %></p>
+      <% } %>
+      <a href="/articles"><button class="articles-button">Articles</button></a>
+    </div>
+
+  </div>
+  <div class="preview">
+      <!--Display Latest 3 created articles dynamically-->
+      <div class="blog-preview">
+      <% if(locals.latestArticles){ %>                   
+        <% for(let i = 0;i<latestArticles.length;i++){ %>
+
+      <div class="single">
+        <div>
+        <a href="/articles/<%= latestArticles[i].uniqueId %>"><img src="images/<%= latestArticles[i].imgnum %>.jpg" alt="" /></a>
+        </div>
+        <div class="single-content">
+        <p class="date"><%= latestArticles[i].date %></p>
+        <a href="/articles/<%= latestArticles[i].uniqueId %>"><h3><%= latestArticles[i].title.slice(0,30) %></h3></a>
+        <p><%= latestArticles[i].text.slice(0,30)+"..." %></p>
+      </div>
+    </div>
+  <% } %>
+    <% } %> 
+  </div>
+    <div class="comercial">
+      <h3>Want to learn Web Development?</h3>
+      <p>
+        Dive into Full Stack Web Development course created by App Brewery! The
+        Course covers all necessary topics for you to become Full Stack Web
+        Developer! Check the link bellow! 👇
+      </p>
+      <p class="course-link"><a  href="https://www.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/12638830#overview">Udemy WebDevelopment Course</a></p>
+    </div>
+  </div>
+</main>
+<%- include("partials/footer.ejs") %>

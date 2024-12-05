@@ -1,0 +1,33 @@
+<%- include("partials/header.ejs") %>
+<div class="articles-container">
+  <div class="title-section">
+    <div>
+      <h2>Articles</h2>
+      <img class="articles-image" src="images/articles.jpg" alt="" />
+    </div>
+    <div class="info-section">
+      <p>Create an article for no appearent reason</p>
+      <a href="/new"><button class="new-article-btn">New Article</button></a>
+    </div>
+  </div>
+  <div class="articles-section">
+    <% if(locals.articleList){ %> <% for(let i = articleList.length-1;i>=0;i--)
+    {%>
+
+    <div class="single-article">
+      <div class="article-image-section">
+        <img src="images/<%= articleList[i].imgnum %>.jpg" alt="" />
+      </div>
+      <div class="article-content-section">
+        <p class="date"><%= articleList[i].date %></p>
+        <a href="/articles/<%= articleList[i].uniqueId %>"
+          ><h3><%= articleList[i].title %></h3>
+        </a>
+        %>
+        <p><%= articleList[i].text.slice(0,60)+"..." %></p>
+      </div>
+    </div>
+    <% } %> <% } %>
+  </div>
+</div>
+<%- include("partials/footer.ejs") %>
